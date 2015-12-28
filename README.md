@@ -1,56 +1,12 @@
 iterm2-borderless-padding
 -------------------------
 
-This repo contains the binary and patch file used to remove borders and add padding to iTerm2.
+## Inspired by https://github.com/jaredculp/iterm2-borderless-padding
 
-![iterm2-borderless-padding](http://i.imgur.com/QsMVfNq.png)
+This repo contains the patch file used to remove borders from iTerm2. Since this
+leaves us with an undraggable window, this patch enables dragging on the tab bar.
+Which has the downside of not being able to rearrange tabs with the mouse, but I 
+can live with that.
 
-```patch
-From e4f74ef9f1386494f4bbdd64398adf2ae9c7382b Mon Sep 17 00:00:00 2001
-From: Jared Culp <jculp14@gmail.com>
-Date: Tue, 26 May 2015 13:34:59 -0400
-Subject: [PATCH] Remove borders, add padding
-
----
- sources/PseudoTerminal.m         | 3 +--
- sources/iTermTextDrawingHelper.h | 4 ++--
- 2 files changed, 3 insertions(+), 4 deletions(-)
-
-diff --git a/sources/PseudoTerminal.m b/sources/PseudoTerminal.m
-index fc628c5..4b6ef53 100644
---- a/sources/PseudoTerminal.m
-+++ b/sources/PseudoTerminal.m
-@@ -355,8 +355,7 @@ static const CGFloat kHorizontalTabBarHeight = 22;
-             return NSBorderlessWindowMask;
- 
-         default:
--            return (NSTitledWindowMask |
--                    NSClosableWindowMask |
-+            return (NSClosableWindowMask |
-                     NSMiniaturizableWindowMask |
-                     NSResizableWindowMask |
-                     NSTexturedBackgroundWindowMask);
-diff --git a/sources/iTermTextDrawingHelper.h b/sources/iTermTextDrawingHelper.h
-index 3863769..2c811fb 100644
---- a/sources/iTermTextDrawingHelper.h
-+++ b/sources/iTermTextDrawingHelper.h
-@@ -12,10 +12,10 @@
- #import "VT100GridTypes.h"
- 
- // Number of pixels margin on left and right edge.
--#define MARGIN 5
-+#define MARGIN 25
- 
- // Number of pixels margin on the top.
--#define VMARGIN 2
-+#define VMARGIN 25
- 
- @class iTermColorMap;
- @class iTermFindOnPageHelper;
--- 
-2.4.0
-```
-
-You can apply the patch to the [source](https://github.com/gnachman/iTerm2) HEAD using the `make` command.
-
-The new binary will be located at `iTerm2/build/Development/iTerm2.app`.
+The makefile will clone the iTerm2 repo if it doesn't exist already. After compiling 
+your new binary will be located at `iTerm2/build/Development/iTerm2.app`.
