@@ -1,0 +1,40 @@
+From 0d3b6d67d4caab2adc84819dad49374bffc7843e Mon Sep 17 00:00:00 2001
+From: Aaron Heesakkers <aaronheesakkers@gmail.com>
+Date: Mon, 28 Dec 2015 10:16:15 +0100
+Subject: [PATCH] Borderless and draggable
+
+---
+ ThirdParty/PSMTabBarControl/source/PSMTabBarControl.m | 2 +-
+ sources/PseudoTerminal.m                              | 3 +--
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/ThirdParty/PSMTabBarControl/source/PSMTabBarControl.m b/ThirdParty/PSMTabBarControl/source/PSMTabBarControl.m
+index affcc0a..781b1cc 100644
+--- a/ThirdParty/PSMTabBarControl/source/PSMTabBarControl.m
++++ b/ThirdParty/PSMTabBarControl/source/PSMTabBarControl.m
+@@ -1193,7 +1193,7 @@ const NSInteger kPSMStartResizeAnimation = 0;
+ 
+ - (BOOL)mouseDownCanMoveWindow
+ {
+-    return NO;
++    return YES;
+ }
+ 
+ - (BOOL)acceptsFirstMouse:(NSEvent *)theEvent
+diff --git a/sources/PseudoTerminal.m b/sources/PseudoTerminal.m
+index 8dfe80d..90106f2 100644
+--- a/sources/PseudoTerminal.m
++++ b/sources/PseudoTerminal.m
+@@ -333,8 +333,7 @@ static NSString* TERMINAL_ARRANGEMENT_HIDING_TOOLBELT_SHOULD_RESIZE_WINDOW = @"H
+             return NSBorderlessWindowMask;
+ 
+         default:
+-            return (NSTitledWindowMask |
+-                    NSClosableWindowMask |
++            return (NSClosableWindowMask |
+                     NSMiniaturizableWindowMask |
+                     NSResizableWindowMask |
+                     NSTexturedBackgroundWindowMask);
+-- 
+2.5.4 (Apple Git-61)
+
